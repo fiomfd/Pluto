@@ -1,5 +1,5 @@
 # Pluto
-I have some notebooks for Pluto.jl
+Here are some notebooks for Pluto.jl.
 
 - pluto_taylor.jl Taylor's Theorem and Taylor Expansion
 - pluto_svd.jl Singular value decomposition and low rank approximation of matrices
