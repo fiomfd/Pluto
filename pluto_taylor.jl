@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.4
+# v0.19.5
 
 using Markdown
 using InteractiveUtils
@@ -33,20 +33,17 @@ Taylor's theorem says that if $f(x)$ is $C^\infty$ near $x=a$ then for any $N=1,
 
 $f(x)
 =
-P_{N-1}(x)
+\sum_{n=0}^{N-1}
+\frac{f^{(n)}(a)}{n!}
+(x-a)^n
 +
 R_N(x),$
 
-$P_{N-1}(x)
-=
-\sum_{n=0}^{N-1}
-\frac{f^{(n)}(a)}{n!}
-(x-a)^n,$
-
-
 $R_N(x)
 =
-\frac{f^{(N)}\bigl(\theta{x}+(1-\theta)a)}{N!}(x-a)^N \\\\
+\frac{f^{(N)}\bigl(\theta{x}+(1-\theta)a)}{N!}(x-a)^N,$
+
+$R_N(x)
 =
 \frac{(x-a)^N}{(N-1)!}
 \int_0^1
@@ -57,7 +54,13 @@ dt,$
 where $\theta=\theta(x,a,N)\in(0,1)$ is a constant depending on $x$, $a$ and $N$. 
 For **some** smooth function $f$ and **some** $x$ we have 
 
-$R_N(x) \rightarrow 0 \quad\text{as}\quad N\rightarrow\infty.$
+$f(x)
+-
+\sum_{n=0}^{N-1}
+\frac{f^{(n)}(a)}{n!}
+(x-a)^n
+=
+R_N(x) \rightarrow 0 \quad\text{as}\quad N\rightarrow\infty.$
 
 In this case it is well-known that there exists $\rho\in(0,\infty]$ such that 
 
@@ -86,7 +89,13 @@ $\log(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}, \quad x\in(-1,1].$
 # ╔═╡ fd9270b6-bcb1-444a-b2e8-bc07efee3a24
 md"""
 ##### Animation #1
-$\log(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}, \quad x\in(-1,1]$
+$\log(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}, \quad x\in(-1,1].$
+
+For any $\varepsilon\in(0,1)$, 
+
+$\max_{x\in[-1+\varepsilon,1]}\left\lvert\log(1+x)-\sum_{n=1}^N\frac{(-1)^{n-1}x^n}{n}\right\rvert \rightarrow 0 \quad (N\rightarrow\infty).$
+
+
 """
 
 # ╔═╡ 3edf319a-48e4-48f0-82ab-f81e5f2c581c
@@ -125,7 +134,7 @@ gif(anim1, "taylor_log.gif", fps = 2)
 
 # ╔═╡ a1aa2ce7-db42-44d2-a9d8-4ae67976f76f
 md"""
-$(@bind l1 Slider(1:N, show_value=true))
+N= $(@bind l1 Slider(1:N, show_value=true))
 """
 
 # ╔═╡ cceffb37-cb1f-4436-aab6-17f325504276
@@ -141,7 +150,18 @@ end
 # ╔═╡ 897a6954-9e77-41d8-a88d-d43b4c9902c6
 md"""
 ##### Animation #2
-$(1+x)^{-1/2}=\sum_{n=0}\frac{(-1)^n(2n)!x^n}{2^{2n}(n!)^2}, \quad x\in(-1,1)$
+$(1+x)^{-1/2}=\sum_{n=0}^\infty\frac{(-1)^n(2n)!x^n}{2^{2n}(n!)^2}, \quad x\in(-1,1].$
+
+For any $\varepsilon\in(0,1)$, 
+
+$\max_{x\in[-1+\varepsilon,1]}
+\left\lvert
+(1+x)^{-1/2}
+-
+\sum_{n=1}^N
+\frac{(-1)^n(2n)!x^n}{2^{2n}(n!)^2}
+\right\rvert 
+\rightarrow 0 \quad (N\rightarrow\infty).$
 """
 
 # ╔═╡ e956146c-d9f1-4c0f-8422-32c29e6d5b69
@@ -176,7 +196,7 @@ gif(anim2, "taylor_negative.gif", fps = 2)
 
 # ╔═╡ c05b1f88-2750-4f76-8af0-10091651289a
 md"""
-$(@bind l2 Slider(1:N, show_value=true))
+N= $(@bind l2 Slider(1:N, show_value=true))
 """
 
 # ╔═╡ cb7d861a-8d69-4e08-a69d-7638de638e3f
@@ -199,7 +219,19 @@ $e^x=\sum_{n=0}^\infty\frac{x^n}{n!}, \quad \cos{x}=\sum_{k=0}^\infty\frac{(-1)^
 # ╔═╡ 8ca3ca65-60cd-49a6-8e49-7e64df935d48
 md"""
 ##### Animation #3
-$\sin{x}=\sum_{k=0}^\infty\frac{(-1)^kx^{2k+1}}{(2k+1)!}, \quad x\in\mathbb{R}$
+$\sin{x}=\sum_{k=0}^\infty\frac{(-1)^kx^{2k+1}}{(2k+1)!}, \quad x\in\mathbb{R}.$
+
+For any $R>0$, 
+
+$\max_{x\in[-R,R]}
+\left\lvert
+\sin{x}
+-
+\sum_{k=0}^K
+\frac{(-1)^kx^{2k+1}}{(2k+1)!}
+\right\rvert
+\rightarrow 0 \quad (K\rightarrow\infty).$
+
 """
 
 # ╔═╡ 1e890c43-ef8f-4455-84e3-d488fec7f8d2
@@ -236,7 +268,7 @@ gif(anim3, "taylor_sin.gif", fps = 2)
 
 # ╔═╡ 14bcb950-41f8-4adf-bc42-340fc50515cd
 md"""
-$(@bind l3 Slider(1:K, show_value=true))
+K = $(@bind l3 Slider(1:K, show_value=true))
 """
 
 # ╔═╡ 45804075-3dba-4760-8560-ecf3f0445fb1
@@ -246,6 +278,105 @@ begin
 		title="sin(x) and its Taylor Series",
 		xticks = ([0 50 100 151 201 251 301;], ["-3π" "-2π" "-π" "0" "π" "2π" "3π"]),xlabel="x",
 		label=["sin(x)" "Taylor"],legend=:topleft,legendfont=font(8))end
+
+# ╔═╡ a8563bdb-5391-4288-aca7-a279657f7ca0
+md"""
+##### Approximation of $e$
+
+$e= 2.7182818284590452353602874713...$
+
+$e
+=
+\lim_{n\rightarrow\infty}\left(1+\frac{1}{n}\right)^n
+=
+\sum_{n=0}^\infty
+\frac{1}{n!}.$
+
+$a(n)
+:=
+\left(1+\frac{1}{n}\right)^n,
+\quad
+b(n)
+:=
+\sum_{k=0}^n
+\frac{1}{k!}.$
+
+"""
+
+# ╔═╡ 69451c4b-eee9-46c1-9e6b-94c771ad7109
+N１=100000;
+
+# ╔═╡ 7b6a3f4e-6b84-414a-b524-07b16847b0b2
+begin
+    a=zeros(N１);
+	b=zeros(N１);
+	a[1]=2;
+	b[1]=2
+	for n=2:N１
+		a[n]=(1+1/n)^n;
+		b[n]=b[n-1]+1/factorial(big(n));
+	end
+end
+
+# ╔═╡ 570aaa20-7c3f-4f79-90c9-a3a6acbf7c56
+md"""
+n = $(@bind k1 Slider(1:N１, show_value=true))
+"""
+
+# ╔═╡ 67e28e2e-b27e-473c-a333-43c27e61df2e
+begin
+	plot([a[1:k1] b[1:k1]],xlim=[1,N１],ylim=[2.715,2.719], legend=:bottomright, label=["a[n]" "b[n]"],title="Approximation of e")
+end
+
+# ╔═╡ 235d5b25-f044-476c-ad2f-39d1fffbd9c2
+md"""
+##### Approximation of $\pi$
+
+$\pi= 3.14159265358979323846…$
+
+$\pi
+=
+4\operatorname{Arctan}1
+=
+4
+\sum_{n=0}^\infty
+\frac{(-1)^n}{2n+1}.$
+
+$c(n)
+:=
+\pi,
+\quad
+d(n)
+:=
+4
+\sum_{k=0}^n
+\frac{(-1)^k}{(2k+1)!}.$
+
+"""
+
+# ╔═╡ af34278d-13b2-43e5-baf4-21a9884c643f
+N2=1000;
+
+# ╔═╡ 72d898c8-18b3-44e1-b73d-eeb68dca189a
+begin
+    c=pi.*ones(N2);
+	d=zeros(N2);
+	d[1]=4*(1-1/3);
+	for n=2:N2
+		d[n]=d[n-1]+4*(-1)^n/(2*n+1);
+	end
+end
+
+# ╔═╡ 39bc3df4-aeb6-480c-8068-e549ada0397b
+md"""
+n = $(@bind k2 Slider(1:N2, show_value=true))
+"""
+
+# ╔═╡ 3e22df11-977b-436b-bf6c-f05f849202f0
+begin
+	plot([d[1:k2] c[1:k2]],xlim=[1,N2],ylim=[3.1,3.2], legend=:topright, label=["Taylor polynomial of 4Arctan1" "π"],xlabel="n (degree of polynomial)",title="Approximation of π by the Taylor series of 4Arctan1")
+	#savefig("./4arctan1.png")
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -264,7 +395,7 @@ PlutoUI = "~0.7.38"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.7.2"
+julia_version = "1.7.3"
 manifest_format = "2.0"
 
 [[deps.AbstractPlutoDingetjes]]
@@ -387,7 +518,7 @@ uuid = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 version = "0.8.6"
 
 [[deps.Downloads]]
-deps = ["ArgTools", "LibCURL", "NetworkOptions"]
+deps = ["ArgTools", "FileWatching", "LibCURL", "NetworkOptions"]
 uuid = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
 
 [[deps.EarCut_jll]]
@@ -413,6 +544,9 @@ deps = ["Artifacts", "Bzip2_jll", "FreeType2_jll", "FriBidi_jll", "JLLWrappers",
 git-tree-sha1 = "d8a578692e3077ac998b50c0217dfd67f21d1e5f"
 uuid = "b22a6f82-2f65-5046-a5b2-351ab43fb4e5"
 version = "4.4.0+0"
+
+[[deps.FileWatching]]
+uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 
 [[deps.FixedPointNumbers]]
 deps = ["Statistics"]
@@ -1201,14 +1335,14 @@ version = "0.9.1+5"
 """
 
 # ╔═╡ Cell order:
-# ╠═581f8ff0-d1fc-11ec-3cab-5f335ec587ad
-# ╠═c299148e-4b85-4bf3-a514-20d1dff0dc59
+# ╟─581f8ff0-d1fc-11ec-3cab-5f335ec587ad
+# ╟─c299148e-4b85-4bf3-a514-20d1dff0dc59
 # ╟─6f6479b6-265a-4474-8a90-3df0ff98cfac
 # ╟─fd9270b6-bcb1-444a-b2e8-bc07efee3a24
 # ╟─3edf319a-48e4-48f0-82ab-f81e5f2c581c
 # ╟─6df94cdc-5e01-44e2-8096-a19046f0c7b7
 # ╟─1f880447-a990-43c2-8a73-cf17e366a845
-# ╠═a1aa2ce7-db42-44d2-a9d8-4ae67976f76f
+# ╟─a1aa2ce7-db42-44d2-a9d8-4ae67976f76f
 # ╟─cceffb37-cb1f-4436-aab6-17f325504276
 # ╟─897a6954-9e77-41d8-a88d-d43b4c9902c6
 # ╟─e956146c-d9f1-4c0f-8422-32c29e6d5b69
@@ -1223,5 +1357,15 @@ version = "0.9.1+5"
 # ╟─9cd7849b-d878-4844-b679-c631c59cdedc
 # ╟─14bcb950-41f8-4adf-bc42-340fc50515cd
 # ╟─45804075-3dba-4760-8560-ecf3f0445fb1
+# ╟─a8563bdb-5391-4288-aca7-a279657f7ca0
+# ╟─69451c4b-eee9-46c1-9e6b-94c771ad7109
+# ╟─7b6a3f4e-6b84-414a-b524-07b16847b0b2
+# ╟─570aaa20-7c3f-4f79-90c9-a3a6acbf7c56
+# ╟─67e28e2e-b27e-473c-a333-43c27e61df2e
+# ╟─235d5b25-f044-476c-ad2f-39d1fffbd9c2
+# ╟─af34278d-13b2-43e5-baf4-21a9884c643f
+# ╟─72d898c8-18b3-44e1-b73d-eeb68dca189a
+# ╟─39bc3df4-aeb6-480c-8068-e549ada0397b
+# ╟─3e22df11-977b-436b-bf6c-f05f849202f0
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
