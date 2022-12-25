@@ -16,7 +16,11 @@ end
 
 # ╔═╡ 5ffc5ec0-f91f-11ec-0552-37ef5f25102d
 begin
-    using Symbolics, ForwardDiff, Plots, PlutoUI, LaTeXStrings
+    using Symbolics
+	using ForwardDiff
+	using Plots
+	using PlutoUI
+	using LaTeXStrings
 end
 
 # ╔═╡ 2dc43448-3cf4-475f-8b61-d16c3594d9e3
@@ -178,7 +182,7 @@ Symbolics = "~4.8.3"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.8.2"
+julia_version = "1.8.4"
 manifest_format = "2.0"
 project_hash = "4c903d23497a49dff1fe15ae4fa6747ec1fb8041"
 
@@ -344,7 +348,7 @@ version = "3.45.0"
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "0.5.2+0"
+version = "1.0.1+0"
 
 [[deps.CompositeTypes]]
 git-tree-sha1 = "d5b014b216dc891e81fea299638e4c10c657b582"
@@ -785,9 +789,9 @@ version = "1.42.0+0"
 
 [[deps.Libiconv_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "42b62845d70a619f063a7da093d995ec8e15e778"
+git-tree-sha1 = "c7cb1f5d892775ba13767a87c7ada0b980ea0a71"
 uuid = "94ce4f54-9a6c-5748-9c1c-f9c7231a4531"
-version = "1.16.1+1"
+version = "1.16.1+2"
 
 [[deps.Libmount_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1537,7 +1541,7 @@ version = "0.9.1+5"
 """
 
 # ╔═╡ Cell order:
-# ╠═5ffc5ec0-f91f-11ec-0552-37ef5f25102d
+# ╟─5ffc5ec0-f91f-11ec-0552-37ef5f25102d
 # ╟─2dc43448-3cf4-475f-8b61-d16c3594d9e3
 # ╟─06191b8b-ddcc-4a2b-8228-0680aa8ad7c5
 # ╟─4c26a3e2-7ad7-4ca5-a5bb-1cf747f1a11a
